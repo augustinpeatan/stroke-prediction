@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroke Prediction</title>
+</head>
+<body>
+    <h1>Stroke Prediction</h1>
+
+    <form action="/prediction" method="POST">
+        <input type="number" name="gender" placeholder="Enter gender" step=0.000001>
+        <br>
+        <input type="number" name="age" placeholder="Enter age" step=0.000001>
+        <br>
+        <input type="number" name="hypertension" placeholder="Enter hypertension" step=0.000001>
+        <br>
+        <input type="number" name="heart_disease" placeholder="Enter heart_disease" step=0.000001>
+        <br>
+        <input type="number" name="ever_married" placeholder="Enter ever_married" step=0.000001>
+        <br>
+        <input type="number" name="work_type" placeholder="Enter work_type" step=0.000001>
+        <br>
+        <input type="number" name="Residence_type" placeholder="Enter Residence_type" step=0.000001>
+        <br>
+        <input type="number" name="avg_glucose_level" placeholder="Enter avg_glucose_level" step=0.000001>
+        <br>
+        <input type="number" name="bmi" placeholder="Enter bmi" step=0.000001>
+        <br>
+        <input type="number" name="smoking_status" placeholder="Enter smoking_status" step=0.000001> step=0.000001>
+        <br>
+        <input type="submit">
+
+    </form>
+
+    {{output_prediction}}
+    <br><br>
+    {{output_proba}}
+    
+</body>
+</html>
