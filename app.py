@@ -30,7 +30,7 @@ def predict():
     probability = loaded_model.predict([[gender,age,hypertension,heart_disease,ever_married,work_type,Residence_type,avg_glucose_level,bmi,smoking_status]])
     probability = f"{np.round((np.max(probability)* 100), 2)}%"
 
-    if prediction == 0:
+    if prediction [0] == 0:
         prediction = "No Stroke"
 
     else:
