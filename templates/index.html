@@ -1,42 +1,388 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stroke Prediction</title>
-</head>
-<body>
-    <h1>Stroke Prediction</h1>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        background-color: rgb(223, 227, 249);
+        font-family: Arial, Helvetica, sans-serif;
+      }
 
-    <form action="/prediction" method="POST">
-        <input type="number" name="gender" placeholder="Enter gender" step=0.000001>
-        <br>
-        <input type="number" name="age" placeholder="Enter age" step=0.000001>
-        <br>
-        <input type="number" name="hypertension" placeholder="Enter hypertension" step=0.000001>
-        <br>
-        <input type="number" name="heart_disease" placeholder="Enter heart_disease" step=0.000001>
-        <br>
-        <input type="number" name="ever_married" placeholder="Enter ever_married" step=0.000001>
-        <br>
-        <input type="number" name="work_type" placeholder="Enter work_type" step=0.000001>
-        <br>
-        <input type="number" name="Residence_type" placeholder="Enter Residence_type" step=0.000001>
-        <br>
-        <input type="number" name="avg_glucose_level" placeholder="Enter avg_glucose_level" step=0.000001>
-        <br>
-        <input type="number" name="bmi" placeholder="Enter bmi" step=0.000001>
-        <br>
-        <input type="number" name="smoking_status" placeholder="Enter smoking_status" step=0.000001> step=0.000001>
-        <br>
-        <input type="submit">
+      header {
+        height: 60px;
+        background: #fff;
+        color: #db1d30;
+        display: flex;
+        padding: 0 40px;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .btn {
+        outline: 0;
+        border: none;
+        padding: 10px;
+        background: #db1d30;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 15px;
+        font-size: 14px;
+      }
+      .container {
+        width: 80%;
+        margin: 40px auto;
+        background-color: #fff;
+        padding: 30px;
+        min-height: 100vh;
+      }
+      .container .head {
+        text-align: center;
+        padding: 10px 0;
+        border-bottom: #db1d30 2px solid;
+        border-bottom: #db1d30 2px solid;
+        /* display: inline; */
+      }
+      .radio {
+        display: flex;
+        gap: 40px;
+        padding: 10px;
+      }
+      .radio .input {
+        display: flex;
+        flex-direction: column;
+      }
+      .radio .input .radio-input {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .input-title {
+        font-size: 18px;
+        font-weight: 800;
+      }
+      .form-input {
+        width: 100%;
+        justify-items: center;
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+      }
+      .text-input input {
+        width: 50%;
+        padding: 8px 10px;
+        margin-bottom: 10px;
+        outline: none;
+        border: none;
+        border: 1px solid #c7c6c8;
+      }
+      .predict {
+        margin-top: 20px;
+        border: 1px solid #c7c6c8;
+        padding: 20px;
+      }
 
-    </form>
+      @media (max-width: 680px) {
+        .form-input {
+          flex-direction: column;
+        }
+        .input-title {
+          font-size: 14px;
+          font-weight: 800;
+        }
+        .radio {
+          gap: 10px;
+        }
+        .container {
+          margin: 20px 0;
+          width: 100%;
+          padding: 10px;
+        }
+        .container .head h1 {
+          font-size: 18px;
+        }
+        .text-input input {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo"><img src="logol.png" width="40" alt="" /></div>
+      <a href="https://github.com/augustinpeatan/stroke-prediction" class="btn"
+        >Get The Code</a
+      >
+    </header>
+    <div class="container">
+      <div class="head">
+        <h1>ChanceHub Stroke Risk Meter</h1>
+      </div>
 
-    {{output_prediction}}
-    <br><br>
-    {{output_proba}}
-    
-</body>
+      <form action="/prediction" method="POST">
+        <div class="form-input">
+          <div class="left">
+            <div class="radio">
+              <label class="input-title" for="gender">Gender:</label>
+              <div class="input">
+                <div class="radio-input">
+                  <label for="gender">Male:</label>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="1"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+                <div class="radio-input">
+                  <label for="gender">Female:</label>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="0"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="radio">
+              <label class="input-title" for="gender">Work Type:</label>
+              <div class="input">
+                <div class="radio-input">
+                  <label for="work_type">Government:</label>
+                  <input
+                    type="radio"
+                    name="work_type"
+                    value="0"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+                <div class="radio-input">
+                  <label for="gender">Children:</label>
+                  <input
+                    type="radio"
+                    name="work_type"
+                    value="1"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+                <div class="radio-input">
+                  <label for="work_type">Private:</label>
+                  <input
+                    type="radio"
+                    name="work_type"
+                    value="2"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+                <div class="radio-input">
+                  <label for="work_type">Self Employed:</label>
+                  <input
+                    type="radio"
+                    name="work_type"
+                    value="3"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+                <div class="radio-input">
+                  <label for="work_type">Never Work:</label>
+                  <input
+                    type="radio"
+                    name="work_type"
+                    value="4"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="radio">
+              <label class="input-title" for="gender">Smoking Status:</label>
+              <div class="input">
+                <div class="radio-input">
+                  <label for="smoking_status">unknown:</label>
+                  <input
+                    type="radio"
+                    name="smoking_status"
+                    value="0"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+                <div class="radio-input">
+                  <label for="smoking_status">Formaerly Smaoke:</label>
+                  <input
+                    type="radio"
+                    name="smoking_status"
+                    value="1"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+                <div class="radio-input">
+                  <label for="smoking_status">Never Smoked:</label>
+                  <input
+                    type="radio"
+                    name="smoking_status"
+                    value="2"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+                <div class="radio-input">
+                  <label for="smoking_status">Smoke:</label>
+                  <input
+                    type="radio"
+                    name="smoking_status"
+                    value="3"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="radio">
+              <label class="input-title" for="gender">Residence Type:</label>
+              <div class="input">
+                <div class="radio-input">
+                  <label for="Residence_type">Urban:</label>
+                  <input
+                    type="radio"
+                    name="smoking_status"
+                    value="1"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+                <div class="radio-input">
+                  <label for="Residence_type">Rural:</label>
+                  <input
+                    type="radio"
+                    name="Residence_type"
+                    value="0"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="radio">
+              <label class="input-title" for="gender">Ever Married:</label>
+              <div class="input">
+                <div class="radio-input">
+                  <label for="ever_married">Yes:</label>
+                  <input
+                    type="radio"
+                    name="ever_married"
+                    value="1"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+                <div class="radio-input">
+                  <label for="ever_married">No:</label>
+                  <input
+                    type="radio"
+                    name="ever_married"
+                    value="0"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="radio">
+              <label class="input-title" for="gender">Heart Disease:</label>
+              <div class="input">
+                <div class="radio-input">
+                  <label for="heart_disease">Yes:</label>
+                  <input
+                    type="radio"
+                    name="heart_disease"
+                    value="1"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+                <div class="radio-input">
+                  <label for="heart_disease">No:</label>
+                  <input
+                    type="radio"
+                    name="heart_disease"
+                    value="0"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="radio">
+              <label class="input-title" for="gender">Hypertension:</label>
+              <div class="input">
+                <div class="radio-input">
+                  <label for="hypertension">Yes:</label>
+                  <input
+                    type="radio"
+                    name="hypertension"
+                    value="1"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+                <div class="radio-input">
+                  <label for="hypertension">No:</label>
+                  <input
+                    type="radio"
+                    name="hypertension"
+                    value="0"
+                    placeholder="Enter gender"
+                    step="0.000001"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-input">
+          <input
+            type="number"
+            name="age"
+            placeholder="Enter age"
+            step="0.000001"
+          />
+
+          <input
+            type="number"
+            name="avg_glucose_level"
+            placeholder="Enter avg_glucose_level"
+            step="0.000001"
+          />
+          <input
+            type="number"
+            name="bmi"
+            placeholder="Enter bmi"
+            step="0.000001"
+          />
+        </div>
+        <input class="btn" type="submit" />
+      </form>
+
+      <div class="predict">
+        {{output_prediction}}
+        <br /><br />
+        {{output_proba}}
+      </div>
+    </div>
+  </body>
 </html>
